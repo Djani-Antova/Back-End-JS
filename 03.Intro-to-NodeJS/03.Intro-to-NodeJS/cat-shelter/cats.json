@@ -1,0 +1,32 @@
+[
+
+    {
+        "name" : "Pretty Kitty1",
+        "imageUrl": "https://cdn.pixabay.com/photo/2015/06/19/14/20/cat-814952_1280.jpg",
+        "price": 350,
+        "breed": "Bombay Cat",
+        "description": "Dominant and aggressive to other cats. Will probably eat you in your sleep. Very cute tho."
+    },
+    {
+        "name" : "Pretty Kitty2",
+        "imageUrl": "https://cdn.pixabay.com/photo/2015/06/19/14/20/cat-814952_1280.jpg",
+        "price": 350,
+        "breed": "Bombay Cat",
+        "description": "Dominant and aggressive to other cats. Will probably eat you in your sleep. Very cute tho."
+    },
+    {
+        "name" : "Pretty Kitty3",
+        "imageUrl": "https://cdn.pixabay.com/photo/2015/06/19/14/20/cat-814952_1280.jpg",
+        "price": 350,
+        "breed": "Bombay Cat",
+        "description": "Dominant and aggressive to other cats. Will probably eat you in your sleep. Very cute tho."
+    },
+    {
+        "name" : "Pretty Kitty4",
+        "imageUrl": "https://cdn.pixabay.com/photo/2015/06/19/14/20/cat-814952_1280.jpg",
+        "price": 350,
+        "breed": "Bombay Cat",
+        "description": "Dominant and aggressive to other cats. Will probably eat you in your sleep. Very cute tho."
+    }
+
+]
