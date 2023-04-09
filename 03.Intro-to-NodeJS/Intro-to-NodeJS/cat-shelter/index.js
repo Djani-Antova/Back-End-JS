@@ -1,8 +1,7 @@
 const http = require('http');
-const homePage = require('./views/home');
-const siteCss = require('./styles/site');
-const addCatPage = require('./views/addCat');
-const cats = require('./cats.json');
+const fs = require('fs/promises');
+const querystring = require('querystring')
+
 
 const catTemplate = (cat) => `
     <li>
@@ -14,11 +13,15 @@ const catTemplate = (cat) => `
             <li class="btn edit"><a href="">Change Info</a></li>
             <li class="btn delete"><a href="">New Home</a></li>
         </ul>
-    </li>`;
+    </li>
+    `;
 
 
 
-const server = http.createServer((req, res) => {
+const server = http.createServer(async (req, res) => {    
+    let [pathname, qs] = req.url.split('?');
+    let params = querystring.parse(qs)
+
     res.writeHead(200, {
         'Content-Type': 'text/html'
     })
@@ -26,21 +29,30 @@ const server = http.createServer((req, res) => {
     if (req.url == '/styles/site.css') {
         res.writeHead(200, {
             'Content-Type': 'text/css'
-        })
+        });
 
-        res.write(siteCss)
-    } else if(req.url == '/cats/add-cat') {
-        res.write(addCatPage)
-    }     
-    
-    else {
+        let siteCss = await fs.readFile('./styles/site.css', 'utf-8')
 
-        const homePageResult = homePage.replace('{{cats}}', cats.map( x => catTemplate(x)).join(''))
-        res.write(homePageResult)
+        res.write(siteCss);       
+    } else if (req.url == '/cats/add-cat') {
+        let addCatPage = await fs.readFile('./view/addCat.html', 'utf-8');
+
+        res.write(addCatPage);           
+    }  else {
+        let homePageHtml = await fs.readFile('./views/home.html', 'utf-8');
+        let catsResult = await fs.readFile('./cats.json');
+        let cats = JSON.parse(catsResult);
+
+        const catsPageResult = cats
+                .filter(x => params.name 
+                    ? x.name.toLowerCase().startsWith(params.name.toLowerCase()) 
+                    : true)
+                .map(x => catTemplate(x)).join('');
+        const homePageResult = homePageHtml.replace('{{cats}}', catsPageResult)
+        res.write(homePageResult)            
     }
-
-
     res.end()
+
 });
 server.listen(5000, () => console.log('Server is listening on port 5000...'))
 
