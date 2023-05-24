@@ -1,7 +1,8 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const expressSession = require('express-session')
+const expressSession = require('express-session');
 
+const dataService = require('./dataService')
 const app = express();
 
 app.use(express.urlencoded({ extended: false }));
@@ -18,36 +19,63 @@ app.get('/', (req, res) => {
     <h1>Hello</h1>
     <h2>
     <p><a href="/login">Login</a></p>
+    <p><a href="/register">Register</a></p>
     <p><a href="/profile">Profile</a></p>
     </h2>`)
 });
 app.get('/login', (req, res) => {
-    res.send(`<h2>
+    res.send(`
+        <h1>Sign In</h1>
+        <form method= "POST">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="username">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="password">
+            <input type="submit" value="login">
+        </form>`)
+})
+
+app.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+    try{
+        const user = await dataService.loginUser(username, password)
+        const authData = {
+            username: user.username,
+        }
+
+        res.cookie('auth', JSON.stringify(authData));
+        req.session.username = user.username;
+        req.session.privateInfo = user.password;
+
+        return res.redirect('/')
+
+    } catch(err) {
+        console.log(err);
+        res.status(401).end()
+    }
+
+})
+
+app.get('/register', (req, res) => {
+    res.send(`
+    <h1>Sign up</h1>
     <form method= "POST">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" placeholder="username">
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" placeholder="password">
-        <input type="submit" value="Login">
-    </form></h2>`)
-})
+        <input type="submit" value="register">
+    </form>`)
+});
 
-app.post('/login', (req, res) => {
-    const { username, password } = req.body;
-    if (username == 'Ivan' && password == 'peti') {
-        const authData = {
-            username: 'Ivan',
-        }
-        res.cookie('auth', JSON.stringify(authData));
-        req.session.username = 'Ivan';
-        req.session.privateInfo = 'Some private info';
-        return res.redirect('/')
+app.post('/register', async (req, res) => {
+    const { username, password} = req.body;
+    await dataService.registerUser(username, password);
 
-    }
-    res.status(401).end()
-
+    res.redirect('/login')
 
 })
+
 app.get('/profile', (req, res) => {
     // Check if user is logged
     const authData = req.cookies['auth'];
