@@ -21,6 +21,7 @@ app.get('/', (req, res) => {
     <p><a href="/login">Login</a></p>
     <p><a href="/register">Register</a></p>
     <p><a href="/profile">Profile</a></p>
+    <p><a href="/logout">Logout</a></p>
     </h2>`)
 });
 app.get('/login', (req, res) => {
@@ -90,6 +91,11 @@ app.get('/profile', (req, res) => {
     res.send(`
         <h2>Hello - ${username}</h2>
     `)
+})
+
+app.get('/logout', (req, res) => {
+    res.clearCookie('auth');
+    res.redirect('/')
 })
 
 app.listen(5000, () => {
