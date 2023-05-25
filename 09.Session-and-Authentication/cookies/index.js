@@ -1,6 +1,7 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const expressSession = require('express-session');
+const jwt = require('jsonwebtoken')
 
 const dataService = require('./dataService')
 const app = express();
@@ -39,14 +40,13 @@ app.get('/login', (req, res) => {
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
     try{
-        const user = await dataService.loginUser(username, password)
-        const authData = {
-            username: user.username,
-        }
+        const token = await dataService.loginUser(username, password);
 
-        res.cookie('auth', JSON.stringify(authData));
-        req.session.username = user.username;
-        req.session.privateInfo = user.password;
+        res.cookie('token', token, {httpOnly: true});
+        
+        //this is only demo
+        // req.session.username = user.username;
+        // req.session.privateInfo = user.password;
 
         return res.redirect('/')
 
@@ -79,18 +79,22 @@ app.post('/register', async (req, res) => {
 
 app.get('/profile', (req, res) => {
     // Check if user is logged
-    const authData = req.cookies['auth'];
+    const token = req.cookies['token'];
 
-    if (!authData) {
+    if (!token) {
         return res.status(401).end()
     }
+    try {
+        const decodedToken = jwt.verify(token, 'myveryverysecretsecret')
+        
+        res.send(`
+            <h2>Hello - ${decodedToken.username}</h2>
+        `)
 
-    const { username } = JSON.parse(authData);
-    console.log(req.session);
+    } catch(err) {
+        res.status(401).end()
+    }
 
-    res.send(`
-        <h2>Hello - ${username}</h2>
-    `)
 })
 
 app.get('/logout', (req, res) => {
