@@ -1,0 +1,30 @@
+{{!-- <div class="coin">
+    <div class="coin-img">
+        <img src="{{imageUrl}}">
+    </div>
+    <div class="coin-info">
+        <h1>{{name}}</h1>
+        <p><span>Price: </span>${{price}}</p>
+        <p><span>Payment: </span>{{payment}}</p>
+    </div>
+
+    <a href="/data/{{_id}}/details" class="btn-details">Details</a>
+</div> --}}
+
+<div class="card mb-4">
+    <img class="card-img-top" src="{{imageUrl}}" alt="Card image cap" width="400">
+    <div class="card-body">
+        <h4 class="card-title">{{title}}</h4>
+        {{#unless username}}
+        <small class="float-right">Enrolled: {{userCount}}</small>
+        {{/unless}}
+    </div>
+    {{#if username}}
+    <div class="card-footer">
+        <a class="btn btn-primary" href="/data/{{_id}}"> Details</a>
+        <small class="float-right">{{createdAt}}</small>
+    </div>
+    {{else}}
+    
+    {{/if}}
+</div>
