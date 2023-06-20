@@ -1,0 +1,50 @@
+<!-- Details page -->
+<section id="details">
+    <div id="details-wrapper">
+        <p id="details-title">Name: {{data.name}}</p>
+        <div id="img-wrapper">
+            <img src="{{data.imageUrl}}" />
+        </div>
+        <div id="info-wrapper">
+            <table>
+                <tr>
+                    <td>
+                        <p>
+                            Years: <span id="details-years">{{data.years}}</span>
+                        </p>
+                    </td>
+                    <td>
+                        <p>Kind: <span id="details-kind">{{data.kind}}</span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Need of: <span id="details-need">{{data.need}}</span></p>
+                    </td>
+                    <td>
+                        <p>Location: <span id="details-location">{{data.location}}</span></p>
+                    </td>
+                </tr>
+            </table>
+            <p>Description: <span id="details-description">{{data.description}}</span></p>
+        </div>
+
+        <!--Edit and Delete are only for creator-->
+                {{#if user}}
+                    <div id="action-buttons">
+                        {{#if data.isOwner}}
+                            <a href="/data/{{data._id}}/edit" id="edit-btn">Edit</a>
+                            <a href="/data/{{data._id}}/delete" id="delete-btn">Delete</a>
+                        {{else}}    
+                            {{#if data.hasBought}}
+                                <p id="already-donated">You already donated!</p>
+                            {{else}} 
+                                <a href="/data/{{data._id}}/details" id="donation-btn">Donation</a>
+                              {{/if}}
+                        {{/if}}
+                    </div>
+                  {{/if}}
+        </div>
+
+</section>
+
