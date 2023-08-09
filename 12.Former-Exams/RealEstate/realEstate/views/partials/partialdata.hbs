@@ -1,0 +1,57 @@
+!!Be careful for hrefs="" in partial!!
+
+                <div class="card">
+                    <h3>{{nameProp}}</h3>
+                    <p>{{description}}</p>
+
+                    <div class="cta-container"><a href="/data/{{_id}}" class="det-link">Details</a></div>
+                    <div class="card_circle"><img src="{{imageUrl}}"></div>
+
+                </div>
+
+{{!-- <div class="coin">
+    <div class="coin-img">
+        <img src="{{imageUrl}}">
+    </div>
+    <div class="coin-info">
+        <h1>{{name}}</h1>
+        <p><span>Price: </span>${{price}}</p>
+        <p><span>Payment: </span>{{payment}}</p>
+    </div>
+
+    <a href="/data/{{_id}}" class="btn-details">Details</a>
+</div> --}}
+
+{{!-- <div class="card mb-4">
+    <img class="card-img-top" src="{{imageUrl}}" alt="Card image cap" width="400">
+    <div class="card-body">
+        <h4 class="card-title">{{title}}</h4>
+        {{#unless username}}
+        <small class="float-right">Enrolled: 8</small>
+        {{/unless}}
+    </div>
+    {{#if username}}
+    <div class="card-footer">
+        <a href="/data/{{_id}}"><button type="button" class="btn btn-primary">Details</button></a>
+        <small class="float-right">{{createdAt}}</small>
+    </div>
+    {{/if}}
+</div> --}}
+                            {{!-- ^^
+                            | and for the above partial the following view
+                            ^^ --}}
+{{!-- {{#if data}}
+<div class="container mt-3">
+    <div class="row ">
+
+        <div class="card-deck d-flex justify-content-center">
+            {{#each data }}
+            {{> partialdata username=../username}}
+            {{/each}}
+
+        </div>
+    </div>
+</div>
+{{else}}
+<h3 class="text-center">No courses...</h3>
+{{/if}} --}}

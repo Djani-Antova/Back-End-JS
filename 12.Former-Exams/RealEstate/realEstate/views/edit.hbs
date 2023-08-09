@@ -1,0 +1,77 @@
+
+
+            <section id="edit-page">
+                <div class="edit-container">
+                    <div class="box-image">
+
+                    </div>
+                    <h2 class="box-heading">
+                        Edit Home
+                    </h2>
+
+                    <form class="form" method="POST">
+                        <div class="input">
+                            <input type="text" class="input-field" id="home-name" name="nameProp" value="{{data.nameProp}}" />
+                            <label class="home-name">Name:</label>
+                        </div>
+                        <div class="input">
+                            <input type="text" class="input-field" id="type" name="type" value="{{data.type}}" />
+                            <label class="type">Property Type:</label>
+                        </div>
+                        <div class="input">
+                            <input type="number" class="input-field" id="year" name="year" value="{{data.year}}" />
+                            <label class="year">Year Built:</label>
+                        </div>
+                        <div class="input">
+                            <input type="text" class="input-field" id="city" name="city" value="{{data.city}}" />
+                            <label class="city">City</label>
+                        </div>
+
+                        <div class="input">
+                            <input type="text" class="input-field" id="homeImage" name="imageUrl" value="{{data.imageUrl}}" />
+                            <label class="homeImage">Home Image:</label>
+                        </div>
+
+                        <div class="input">
+                            <input type="text" class="input-field" id="description" name="description" value="{{data.description}}" />
+                            <label class="description">Property Description:</label>
+                        </div>
+
+                        <div class="input">
+                            <input type="number" class="input-field" id="availablePieces" name="rooms" value="{{data.rooms}}" />
+                            <label class="availablePieces">Available pieces:</label>
+                        </div>
+
+                        <div class="create-action">
+                            <button class="create-button">Edit</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+      
+        {{!-- <section id="edit-container">
+            <div class="edit-container-info">
+                <h1>Edit Announcement</h1>
+                <form  method="POST">
+                    <label>Name:</label>
+                    <input type="text" id="name" name="name" value="{{data.name}}" placeholder="Bitcoin">
+                    <label>Image:</label>
+                    <input type="text" id="image" name="imageUrl" value="{{data.imageUrl}}" placeholder="http://...">
+                    <label>Price:</label>
+                    <input type="number" id="price" name="price"  value="{{data.price}}"placeholder="31,166.71">
+                    <label>Description:</label>
+                    <textarea id="description" name="description" placeholder="Introduce your coins..."> {{data.description}}</textarea>
+                    <label>Payment method:</label>
+                    <select id="payment" name="payment">
+                            {{#select data.payment}}
+                        <option value="Crypto Wallet">Crypto Wallet</option>
+                        <option value="Credit Card">Credit Card</option>
+                        <option value="Debit Card">Debit Card</option>
+                        <option value="PayPal">PayPal</option>
+                         {{/select}}
+                    </select>
+                    <input type="submit" id="btn" value="EDIT"></input>
+                </form>
+            </div>
+        </section> --}}
+

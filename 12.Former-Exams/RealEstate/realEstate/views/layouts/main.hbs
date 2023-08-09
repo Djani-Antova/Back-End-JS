@@ -1,0 +1,84 @@
+ 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <link href="/static/css/style.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="box">
+        <div>
+        {{#if errors}}
+            <div class="errorContainer">
+                {{#each errors}}
+                <p>{{this}}</p>
+                {{/each}}
+            </div>
+        {{/if}}
+        </div>
+
+        <nav>
+            <a href="/">Home</a>
+            <ul>
+                <!-- Guest users and Logged users -->
+                <li><a href="/data/catalog">Housing for rent</a></li>
+                {{#unless username}}
+                <li><a href="/auth/login">Login</a></li>
+                <li><a href="/auth/register">Register</a></li>
+                {{else}}
+                <li><a href="/data/create">Create offer</a></li>
+                <li><a href="/data/search">Search</a></li>
+                <li><a href="/auth/logout">Logout</a></li>
+				{{/unless}}
+            </ul>
+        </nav>
+
+        <main>
+            <section id="home-page" class="background-image">
+                <div class="home-container">
+
+                    <div class="info">
+                        <h1>Discover Your Perfect Home</h1>
+                        <h2>The Best Real Estate Deals</h2>
+                    </div>
+
+                </div>
+            </section>
+
+
+       {{{body}}}
+        </main>
+
+
+
+        <footer>
+            © 2021
+        </footer>
+    </div>
+
+</body>
+
+</html>
+
+	{{!-- <header class="header">
+		<nav>
+			<img src="/static/images/logo.png" class="logo">
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/data/catalog">All Crypto</a></li>
+					{{#if username}}
+				<li><a href="/data/search">Search</a></li>
+				<li><a href="/data/create">Create Offer</a></li>
+				<li><a href="/auth/logout">Logout</a></li>
+					{{else}}
+				<li><a href="/auth/login">Login</a></li>
+				<li><a href="/auth/register">Register</a></li>
+					{{/if}}
+			</ul>
+		</nav>
+	</header> --}}

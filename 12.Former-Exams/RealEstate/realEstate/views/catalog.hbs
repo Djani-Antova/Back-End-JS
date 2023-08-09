@@ -1,0 +1,52 @@
+{{!-- <section class="crypto-market">
+    <h1><span>Crypto</span> Trade</h1>
+    {{#if data}}
+    <div class="offer-list">
+        {{#each data}}
+        {{>partialdata}}
+        {{/each}}
+
+    </div>
+    {{else}}
+    <div class="no-offer">
+        <p>There are no crypto offers found!</p>
+    </div>
+    {{/if}}
+</section> --}}
+
+<section id="all-listings">
+    {{#if data}}
+    <h1>Apartments for recents</h1>
+    <!-- If there are offers for housing in the database display each of them -->
+
+    {{#each data}}
+    {{>partialdata}}
+    {{/each}}
+
+
+    <!-- If there are still no offers for housing in the database display: -->
+    {{else}}
+    <div class="no-data-listing">
+        <p class="no-offer">There are no housing offers found...</p>
+    </div>
+      {{/if}}
+</section>
+
+
+
+{{!-- <main id="catalog">
+    <section class="game-market">
+        <h1>Game Trade Code</h1>
+        {{#if games}}
+        <div class="offer-list">
+            {{#each games}}
+            {{>game}}
+            {{/each}}
+        </div>
+        {{else}}
+        <div class="no-offer">
+            <p>There are no game offers found!</p>
+        </div>
+        {{/if}}
+    </section>
+</main> --}}
